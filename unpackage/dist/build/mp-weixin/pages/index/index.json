@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "order-list": "/pages/orderList/index",
+    "user": "/pages/user/index",
+    "element": "/pages/element/index"
+  }
+}

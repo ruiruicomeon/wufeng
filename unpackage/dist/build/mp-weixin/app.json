@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/orderList/index",
+    "pages/orderdateil/index",
+    "pages/index/index",
+    "pages/user/index",
+    "pages/element/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "五丰供应商协同系统",
+    "navigationBarBackgroundColor": "#F99C34",
+    "backgroundColor": "#FFFFFF"
+  },
+  "permission": {},
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}
