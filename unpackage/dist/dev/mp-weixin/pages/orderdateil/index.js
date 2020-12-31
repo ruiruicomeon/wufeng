@@ -97,11 +97,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var m0 = _vm.statusCodeColor(_vm.statusCode)
   var g0 = _vm.$moment(_vm.orderDateInfo.releasedDate).format("YYYY-MM-DD")
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
+        m0: m0,
         g0: g0
       }
     }
@@ -229,6 +231,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
 var _requestService = _interopRequireDefault(__webpack_require__(/*! @/services/request.service.js */ 163));
 var _authService = __webpack_require__(/*! @/services/auth.service.js */ 8);
 
@@ -246,7 +255,8 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(
       orderDateInfo: {},
       orderlineList: [],
       poHeaderId: '',
-      statusCode: '' };
+      statusCode: '',
+      statusCodeMeaning: '' };
 
   },
   methods: {
@@ -276,11 +286,33 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(
       }).catch(function (err) {
         uni.hideLoading();
       });
+    },
+    statusCodeColor: function statusCodeColor(code) {
+      if (code === 'PUBLISHED') {
+        return '#C2D100';
+      }
+      if (code === 'CONFIRMED') {
+        return '#49A800';
+      }
+      if (code === 'SUPPLIER_CONFIRMED') {
+        return '#DA8A00';
+      }
+      if (code === 'PUBLISH_CANCEL') {
+        return '#8C9420';
+      }
+      if (code === 'CANCELED') {
+        return '#9E9E9E';
+      }
+      if (code === 'CLOSED') {
+        return '#8C9420';
+      }
+
     } },
 
   onLoad: function onLoad(option) {
     this.poHeaderId = option.poHeaderId;
     this.statusCode = option.statusCode;
+    this.statusCodeMeaning = option.statusCodeMeaning;
     this.getOrderDateils(option.poHeaderId);
   },
   // 下拉刷新

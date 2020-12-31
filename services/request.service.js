@@ -28,6 +28,17 @@ function requestType(type, url, params, resolve, reject) {
 					})
 				}
 			}
+			if(res.statusCode === 500){
+				uni.showModal({
+					icon: 'none',
+					title: '提示',
+					content: res.data.error_description,
+					confirmText: '确定',
+					showCancel: false,
+					mask: true,
+					confirmColor: '#F99C34',
+				})
+			}
 			resolve(res.data)
 		},
 		fail: function(res) {

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "列表页",
+  "navigationBarTitleText": "订单列表",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "order-list": "/components/order-list/list-item",

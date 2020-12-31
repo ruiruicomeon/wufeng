@@ -61,7 +61,7 @@
 			},
 			onOrderItemClick(item) {
 				uni.navigateTo({
-					url: `../orderdateil/index?poHeaderId=${item.poHeaderId}&statusCode=${item.statusCode}`
+					url: `../orderdateil/index?poHeaderId=${item.poHeaderId}&statusCode=${item.statusCode}&statusCodeMeaning=${item.statusCodeMeaning}`
 				});
 			},
 			onIput: function(e) {

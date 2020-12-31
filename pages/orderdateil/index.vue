@@ -1,8 +1,13 @@
 <template>
 	<view class="dateil-warp">
-		<view class="header-title">
-			<text class="title-block" />
-			<text class="title-info">头信息</text>
+		<view class="header-title" style="margin-bottom: 8rpx;">
+			<view style="display: flex;align-items: center;">
+				<text class="title-block" />
+				<text class="title-info">头信息</text>
+			</view>
+			<view>
+				<text class="title-statusMeaning" :style="{ 'background-color': statusCodeColor(statusCode)}">{{ statusCodeMeaning }} </text>
+			</view>
 		</view>
 		<view class="detail-title-info-warp">
 			<view class="dateil-title-info-item">
@@ -23,7 +28,7 @@
 			</view>
 			<view class="dateil-title-info-item">
 				<text class="dateil-title-info-item-title">含税总金额：</text>
-				<text class="dateil-title-info-item-info">{{ orderDateInfo.taxIncludeAmount }}</text>
+				<text class="dateil-title-info-item-info">{{ orderDateInfo.taxIncludeAmount }} {{ orderDateInfo.currencyCode }}</text>
 			</view>
 			<view class="dateil-title-info-item">
 				<text class="dateil-title-info-item-title">物流方式：</text>
@@ -36,8 +41,10 @@
 		</view>
 		<!-- 行信息 -->
 		<view class="header-title">
-			<text class="title-block" />
-			<text class="title-info">行信息：</text>
+			<view style="display: flex;align-items: center;">
+				<text class="title-block" />
+				<text class="title-info">行信息：</text>
+			</view>
 		</view>
 		<view class="detail-line-info-warp" v-for="(item,index) in orderlineList" :key="index">
 			<view class="detail-line-fist-title-warp">
@@ -60,7 +67,7 @@
 			<view class="dateil-line-content-warp-undeline">
 				<view class="dateil-line-content-left">
 					<text class="dateil-line-left-first">含税单价：</text>
-					<text class="dateil-line-left-scond">{{ item.enteredTaxIncludedPrice }}{{ item.currencyCode }}</text>
+					<text class="dateil-line-left-scond">{{ item.enteredTaxIncludedPrice }}</text>
 				</view>
 				<view class="dateil-line-content-right">
 					<text class="dateil-line-right-first">单位：</text>
@@ -105,7 +112,8 @@
 				orderDateInfo: {},
 				orderlineList: [],
 				poHeaderId: '',
-				statusCode: ''
+				statusCode: '',
+				statusCodeMeaning: ''
 			}
 		},
 		methods: {
@@ -135,11 +143,33 @@
 				}).catch((err) => {
 					uni.hideLoading()
 				})
+			},
+			statusCodeColor(code) {
+				if (code === 'PUBLISHED') {
+					return '#C2D100'
+				}
+				if (code === 'CONFIRMED') {
+					return '#49A800'; 
+				}
+				if (code === 'SUPPLIER_CONFIRMED') {
+					return '#DA8A00';
+				}
+				if (code === 'PUBLISH_CANCEL') {
+					return '#8C9420';
+				}
+				if (code === 'CANCELED') {
+					return '#9E9E9E';
+				}
+				if (code === 'CLOSED') {
+					return '#8C9420';
+				}
+			
 			}
 		},
 		onLoad: function(option) {
 			this.poHeaderId = option.poHeaderId
 			this.statusCode = option.statusCode
+			this.statusCodeMeaning = option.statusCodeMeaning
 			this.getOrderDateils(option.poHeaderId)
 		},
 		// 下拉刷新
@@ -154,14 +184,14 @@
 <style lang="scss" scoped>
 	.dateil-warp {
 		width: 100%;
-		background-color: #EEEEEE;
+		background-color: #EEEEEE !important;
 		padding: 0 8rpx 40rpx;
 
 		.header-title {
 			display: flex;
 			align-items: center;
 			padding: 12rpx 12rpx;
-
+			justify-content: space-between;
 			.title-block {
 				width: 14rpx;
 				height: 38rpx;
@@ -174,6 +204,12 @@
 				color: #000000;
 				font-size: 32rpx;
 				font-weight: 500;
+			}
+			.title-statusMeaning{
+				color: #FFFFFF;
+				font-size: 36rpx;
+				border-radius: 36rpx;
+				padding: 4px 12rpx;
 			}
 		}
 
@@ -197,7 +233,6 @@
 				.dateil-title-info-item-title {
 					color: #808080;
 					font-size: 32rpx;
-					font-weight: bold;
 				}
 
 				.dateil-title-info-item-info {
@@ -227,7 +262,7 @@
 				.dateil-title-info-item-title {
 					color: #808080;
 					font-size: 32rpx;
-					font-weight: bold;
+					// font-weight: bold;
 				}
 
 				.dateil-title-info-item-info {
@@ -243,7 +278,7 @@
 			border-radius: 24rpx;
 			width: 100%;
 			min-height: 300rpx;
-			padding: 0 60rpx 0 24rpx;
+			padding: 0 60rpx 10rpx 24rpx;
 			margin-bottom: 40rpx;
 			box-shadow: 0 3px 6px rgba(10, 16, 20, 0.24), 0 4px 8px rgba(10, 16, 20, 0.12);
 

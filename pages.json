@@ -7,7 +7,7 @@
 		{
 			"path": "pages/orderList/index",
 			"style": {
-				"navigationBarTitleText": "列表页",
+				"navigationBarTitleText": "订单列表",
 				"enablePullDownRefresh": true
 			  
 			}
@@ -15,7 +15,7 @@
 		{
 			"path": "pages/orderdateil/index",
 			"style": {
-				"navigationBarTitleText": "详情页",
+				"navigationBarTitleText": "订单详情",
 				"enablePullDownRefresh": true
 			}
 		},

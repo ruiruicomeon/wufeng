@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7331,7 +7331,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7352,14 +7352,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7445,7 +7445,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"weixin-start-02","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8015,11 +8015,11 @@ function clearAllStore() {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var configService = {
   // apiUrl: 'http://10.200.199.29/gateway',
-  apiUrl: 'https://scp-uat.crngfung.com/gateway',
-  // apiUrl:'https://scp.crngfung.com/gateway',
+  // apiUrl:'https://scp-uat.crngfung.com/gateway',
+  apiUrl: 'https://scp.crngfung.com/gateway',
   // loginUrl: 'http://10.200.199.29',
-  loginUrl: 'https://scp-uat.crngfung.com',
-  // loginUrl:'https://scp.crngfung.com',
+  // loginUrl:'https://scp-uat.crngfung.com',
+  loginUrl: 'https://scp.crngfung.com',
   storage_key: 'user_info',
   publicKey: "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJL0JkqsUoK6kt3JyogsgqNp9VDGDp+t3ZAGMbVoMPdHNT2nfiIVh9ZMNHF7g2XiAa8O8AQWyh2PjMR0NiUSVQMCAwEAAQ==" };var _default =
 
@@ -30797,6 +30797,17 @@ function requestType(type, url, params, resolve, reject) {
 
         }
       }
+      if (res.statusCode === 500) {
+        uni.showModal({
+          icon: 'none',
+          title: '提示',
+          content: res.data.error_description,
+          confirmText: '确定',
+          showCancel: false,
+          mask: true,
+          confirmColor: '#F99C34' });
+
+      }
       resolve(res.data);
     },
     fail: function fail(res) {
@@ -36223,15 +36234,7 @@ request;exports.default = _default;
 });
 
 /***/ }),
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */
+/* 165 */
 /*!****************************************!*\
   !*** D:/project/wufeng/utils/index.js ***!
   \****************************************/
@@ -36295,17 +36298,26 @@ function getClientId() {
   uni.login({
     provider: 'weixin',
     success: function success(res) {
-      var appid = 'wx45dbe58c6be3295e';
-      var secret = '5108b49269b91a70017bba3c5040b340';
-      var url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' +
-      res.code + '&grant_type=authorization_code';
-      uni.request({
-        url: url,
-        success: function success(result) {
-          uni.setStorageSync('openid', result.data.openid);
-          return result.data.openid;
+      // let appid = 'wx45dbe58c6be3295e'   客户端不允许直接这样调用
+      // let secret = '5108b49269b91a70017bba3c5040b340'
+      // let url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' +
+      // 	res.code + '&grant_type=authorization_code';
+      uni.getUserInfo({ // 不会主动唤起弹框授权  需主动增加按钮唤起 
+        provider: 'weixin',
+        success: function success(infoRes) {
+          uni.setStorageSync('nickName', infoRes.userInfo.nickName);
+        },
+        fail: function fail(err) {
+          console.log('获取失败....需主动按钮调用', err);
         } });
 
+      // uni.request({
+      // 	url,
+      // 	success: result => {
+      // 		uni.setStorageSync('openid', result.data.openid);
+      // 		return result.data.openid
+      // 	},
+      // });
     } });
 
 }

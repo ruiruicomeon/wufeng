@@ -140,8 +140,7 @@
 			box-sizing: border-box;
 			background-color: #FFFFFF;
 			border-radius: 8rpx;
-			padding: 34rpx 34rpx 24rpx 22rpx;
-			// box-shadow: 0 -5rpx 0 0 #CCCCCC inset;
+			padding: 18rpx 22rpx 18rpx 22rpx;
 		  box-shadow: 0 3px 6px rgba(10, 16, 20, 0.24), 0 4px 8px rgba(10, 16, 20, 0.12);
 			.list-top {
 				display: flex;

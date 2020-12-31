@@ -27,7 +27,7 @@
 /* 按钮颜色  */
 .dateil-warp.data-v-273e1cb9 {
   width: 100%;
-  background-color: #EEEEEE;
+  background-color: #EEEEEE !important;
   padding: 0 8rpx 40rpx;
 }
 .dateil-warp .header-title.data-v-273e1cb9 {
@@ -38,6 +38,9 @@
   -webkit-align-items: center;
           align-items: center;
   padding: 12rpx 12rpx;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .dateil-warp .header-title .title-block.data-v-273e1cb9 {
   width: 14rpx;
@@ -50,6 +53,13 @@
   color: #000000;
   font-size: 32rpx;
   font-weight: 500;
+}
+.dateil-warp .header-title .title-statusMeaning.data-v-273e1cb9 {
+  color: #FFFFFF;
+  font-size: 36rpx;
+  -webkit-border-radius: 36rpx;
+          border-radius: 36rpx;
+  padding: 4px 12rpx;
 }
 .dateil-warp .detail-title-info-warp.data-v-273e1cb9 {
   background-color: #FFFFFF;
@@ -79,7 +89,6 @@
 .dateil-warp .detail-title-info-warp .dateil-title-info-item .dateil-title-info-item-title.data-v-273e1cb9 {
   color: #808080;
   font-size: 32rpx;
-  font-weight: bold;
 }
 .dateil-warp .detail-title-info-warp .dateil-title-info-item .dateil-title-info-item-info.data-v-273e1cb9 {
   color: #333;
@@ -105,7 +114,6 @@
 .dateil-warp .detail-title-info-warp .dateil-title-info-item-address .dateil-title-info-item-title.data-v-273e1cb9 {
   color: #808080;
   font-size: 32rpx;
-  font-weight: bold;
 }
 .dateil-warp .detail-title-info-warp .dateil-title-info-item-address .dateil-title-info-item-info.data-v-273e1cb9 {
   color: #333;
@@ -118,7 +126,7 @@
           border-radius: 24rpx;
   width: 100%;
   min-height: 300rpx;
-  padding: 0 60rpx 0 24rpx;
+  padding: 0 60rpx 10rpx 24rpx;
   margin-bottom: 40rpx;
   -webkit-box-shadow: 0 3px 6px rgba(10, 16, 20, 0.24), 0 4px 8px rgba(10, 16, 20, 0.12);
           box-shadow: 0 3px 6px rgba(10, 16, 20, 0.24), 0 4px 8px rgba(10, 16, 20, 0.12);

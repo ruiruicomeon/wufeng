@@ -4,7 +4,7 @@
 		<form @submit="formSubmit">
 			<view class="login-content">
 				<view v-if="loginType">
-					<image src="../../static/header_logo.png" mode=""></image>
+					<image src="../../static/header_logo.png" style="display: block;margin: 0 auto;" mode=""></image>
 					<view class="input-view cuIcon-friend">
 						<input class="uni-input" name="usename" v-model="usename" placeholder="用户名" @blur="(e)=>verifyValue(e,'username')" />
 					</view>
@@ -18,6 +18,7 @@
 					</view>
 					<view class="hirt-usernam" v-if="showEmptyHirtNamePass && !password">密码不能为空</view>
 				</view>
+				<!-- <button open-type='getUserInfo' >获取授权</button> -->
 				<view v-if="!loginType">
 					<view class="input-view padding-sm solids radius"> <input class="uni-input" placeholder="请输入手机号" /></view>
 					<view>
@@ -135,7 +136,7 @@
 						client_id: 'client',
 						client_secret: 'secret',
 						source_type: 'app',
-						device_id: uni.getStorageSync('openid'),
+						device_id: usename, // 后续需将deviceId更替为微信登录唯一id
 						username: usename,
 						password: encrypted,
 						// user_type: 用户类型，中台用户-P/C端用户-C
@@ -186,9 +187,9 @@
 		},
 		onReady() {
 			this.initPosition();
+		
 		},
 		onLoad() {
-			getClientId()
 			const token = getToken();
 			if (token) {
 				uni.reLaunch({
